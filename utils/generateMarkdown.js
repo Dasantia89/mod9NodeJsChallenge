@@ -37,13 +37,16 @@ function renderLicenseLink(license) {
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) { 
-  var text;
   var licenses = ['Apache 2.0','MIT','ISC','GNU GPLv3'];
   
   for (var x = 0; x < licenses.length; x++) {
     if (licenses[x] === license) {
-      text = 'This project uses the ' + license + ' license. '
-      return text;
+      var badge = renderLicenseBadge(license);
+      var link = renderLicenseLink(license);
+      var text = 'This project uses the ' + license + ' license. ';
+      var section = `## License ${badge}\n${text}\n${link}` 
+      
+      return section;
     }
   }
   return '';
@@ -52,9 +55,8 @@ function renderLicenseSection(license) {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  var badge = renderLicenseBadge(data.license);
-  var link = renderLicenseLink(data.license);
-  var text = renderLicenseSection(data.license);
+  
+  var license = renderLicenseSection(data.license);
   
   return `# ${data.title}
 
