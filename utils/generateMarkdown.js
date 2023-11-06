@@ -12,9 +12,7 @@ function renderLicenseBadge(license) {
       return licenses[x][1];
     }
   }
-
   return '';
-
 }
 
 // TODO: Create a function that returns the license link
@@ -38,14 +36,11 @@ function renderLicenseLink(license) {
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   var licenses = ['Apache 2.0', 'MIT', 'ISC', 'GNU GPLv3'];
-
   for (var x = 0; x < licenses.length; x++) {
     if (licenses[x] === license) {
-      var badge = renderLicenseBadge(license);
       var link = renderLicenseLink(license);
-      var text = 'This project uses the ' + license + ' license. ';
-      var section = `## License\n${badge}\n${text}\n${link}`
-
+      var text = '\nThis project is covered under the ' + license + ' license. ';
+      var section = `## License <br> ${text}  ${link}`
       return section;
     }
   }
@@ -66,10 +61,10 @@ function renderTableOfContents(name, entry) {
       table += '- [Installation](#installation)';
       isEmpty = false;
     } if (name[x] === 'usage' && entry[x].length > 0) {
-      table += '\n- [Usage](#usage)';
+      table += '\n- [Usage Information](#usage-information)';
       isEmpty = false;
     } if (name[x] === 'contribute' && entry[x].length > 0) {
-      table += '\n- [How to Contribute](#how-to-contribute)';
+      table += '\n- [Contribution Guidelines](#contribution-guidelines)';
       isEmpty = false;
     } if (name[x] === 'tests' && entry[x].length > 0) {
       table += 
@@ -93,7 +88,8 @@ function renderTableOfContents(name, entry) {
   if (isEmpty) {
     return ''
   }
- 
+  
+  return table;
 }
 
 function renderQuestions (data){
@@ -126,17 +122,16 @@ function generateMarkdown(data) {
   var entry = Object.values(data);
   var tableOfContents = renderTableOfContents(names, entry);
   var questions = renderQuestions(data);
-  console.log(markdown)
+  var badge = renderLicenseBadge(data.license);
   for (var x = 0; x < names.length; x++) {
     if (names[x] === 'title') {
-      markdown += `# ${data.title}`
+      markdown += `# ${data.title}   ${badge}`;
     } if (names[x] === 'subTitle') {
-      markdown += '\n' + data.subTitle
-      
+      markdown += '\n' + data.subTitle;
     } if (names[x] === 'desc') {
       markdown += '\n## Description\n' + data.desc
       if (tableOfContents.length > 0) {
-        markdown += '\n' + tableOfContents
+        markdown += '\n' + tableOfContents;
       }
     }
 
@@ -163,44 +158,5 @@ function generateMarkdown(data) {
   }
 
   return markdown;
-
-  // return `# ${data.title}
-
-  // ${data.subTitle}
-
-  // ## Description
-
-  // ${data.desc}
-
-  // ${tableOfContents}
-
-  // ## Installation
-
-  // ${data.install}
-
-  // ## Usage
-
-  // ${ data.usage }
-
-  // ## How to Contribute
-
-  // ${ data.contribute }
-
-  // ## Testing
-
-  // ${ data.tests }
-
-  // ## Project Collaborators
-
-  // ${ data.collab }
-
-  // ${ license }
-
-  // ## Questions
-
-  // For additional questions send an email to ${ data.email }.<br>Or send a message on github here: ${data.github}
-
-  //   `;
 }
-
-    module.exports = generateMarkdown;
+module.exports = generateMarkdown;
