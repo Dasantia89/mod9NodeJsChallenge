@@ -59,7 +59,36 @@ function generateMarkdown(data) {
   var license = renderLicenseSection(data.license);
   
   return `# ${data.title}
+  
+  ## Description
 
+  ${data.desc}
+
+  ## Installation
+
+  ${data.install}
+
+  ## Usage
+
+  ${data.usage}
+
+  ## How to contribute
+
+  ${data.contribute}
+
+  ## Testing
+
+  ${data.tests}
+
+  ## Project Collaborators
+
+  ${data.collab}
+
+  ${license}
+
+  ## Questions
+
+  For additional questions send an email to ${data.email} or send a message on github here: ${data.github}
  
 `;
 }
