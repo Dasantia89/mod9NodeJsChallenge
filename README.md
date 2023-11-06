@@ -9,7 +9,7 @@ Professional README Generator
 - [Questions](#questions)
 ## Installation
 To install this project, clone the repository and run the command 'npm i inquirer@8' in a terminal. This will install the required inquirer app that will enable you to turn all of your project data into a professional readme file.
-## License <br> 
+## License 
 This project is covered under the MIT license.   https://opensource.org/licenses/MIT
 
   ## Questions
