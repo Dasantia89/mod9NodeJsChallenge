@@ -24,7 +24,7 @@ function renderLicenseLink(license) {
     ['Apache 2.0', 'https://opensource.org/licenses/Apache-2.0'],
     ['MIT', 'https://opensource.org/licenses/MIT'],
     ['ISC', 'https://opensource.org/licenses/ISC'],
-    ['GNU GPL v3', 'https://www.gnu.org/licenses/gpl-3.0']
+    ['GNU GPLv3', 'https://www.gnu.org/licenses/gpl-3.0']
   ]
   for (var x = 0; x < licenses.length; x++) {
     if (licenses[x][0] === license) {
@@ -44,7 +44,7 @@ function renderLicenseSection(license) {
       var badge = renderLicenseBadge(license);
       var link = renderLicenseLink(license);
       var text = 'This project uses the ' + license + ' license. ';
-      var section = `## License ${badge}\n${text}\n${link}` 
+      var section = `## License\n${badge}\n${text}\n${link}` 
       
       return section;
     }
@@ -59,10 +59,19 @@ function generateMarkdown(data) {
   var license = renderLicenseSection(data.license);
   
   return `# ${data.title}
-  
+
   ## Description
 
   ${data.desc}
+
+  ## Table of Contents
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [How to Contribute](#how-to-contribute)
+  - [Testing](#testing)
+  - [Project Collaborators](#project-collaborators)
+  - [License](#license)
+  - [Questions](#questions)
 
   ## Installation
 
@@ -72,7 +81,7 @@ function generateMarkdown(data) {
 
   ${data.usage}
 
-  ## How to contribute
+  ## How to Contribute
 
   ${data.contribute}
 
@@ -88,7 +97,7 @@ function generateMarkdown(data) {
 
   ## Questions
 
-  For additional questions send an email to ${data.email} or send a message on github here: ${data.github}
+  For additional questions send an email to ${data.email}.<br>Or send a message on github here: ${data.github}
  
 `;
 }
