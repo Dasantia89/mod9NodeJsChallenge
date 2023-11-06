@@ -55,84 +55,152 @@ function renderLicenseSection(license) {
 
 function renderTableOfContents(name, entry) {
   var table = `
-  ## Table of Contents
+  ## Table of Contents<br>
   `;
+  var isEmpty = true;
   for (var x = 0; x < name.length; x++) {
     if (name[x] === 'title' || name[x] === 'subTitle' || name[x] === 'desc') {
       continue;
     }
     if (name[x] === 'install' && entry[x].length > 0) {
-      table += `
-      [Installation](#installation)`;
+      table += '- [Installation](#installation)';
+      isEmpty = false;
     } if (name[x] === 'usage' && entry[x].length > 0) {
-      table += `
-      [Usage](#usage)`;
+      table += '\n- [Usage](#usage)';
+      isEmpty = false;
     } if (name[x] === 'contribute' && entry[x].length > 0) {
-      table += `
-      [How to Contribute](#how-to-contribute)`;
+      table += '\n- [How to Contribute](#how-to-contribute)';
+      isEmpty = false;
     } if (name[x] === 'tests' && entry[x].length > 0) {
-      table += `
-      [Testing](#testing)`;
+      table += 
+      '\n- [Testing](#testing)';
+      isEmpty = false;
     } if (name[x] === 'collab' && entry[x].length > 0) {
-      table += `
-      [Project Collaborators](#project-collaborators)`;
+      table +=
+      '\n- [Project Collaborators](#project-collaborators)';
+      isEmpty = false;
     } if (name[x] === 'license' && entry[x] != 'None') {
-      table += `
-      [License](#license)`;
-    } if ((name[x] === 'github' && entry[x].length > 0) || (name[x] === 'email' && entry[x].length > 0)){
-      table += `
-      [Questions](#questions)`
+      table += 
+      '\n- [License](#license)';
+      isEmpty = false;
+    } if ((name[x] === 'github' && entry[x].length > 0) || (name[x] === 'email' && entry[x].length > 0)) {
+      table += 
+      '\n- [Questions](#questions)'
+      isEmpty = false;
+      return table;
     }
   }
-  return table;
+  if (isEmpty) {
+    return ''
+  }
+ 
 }
+
+function renderQuestions (data){
+  var questions = `
+  ## Questions
+  `;
+  if(data.github.length === 0 && data.email.length === 0){
+    questions = ''
+  }else if(data.github === 0){
+    questions += `
+    For additional questions send an email to ${data.email}.
+    `
+  }else if (data.email === 0){
+    questions += `
+    Send a message on github here: ${data.github}`
+  }else{
+    questions += `
+  For additional questions send an email to: ${data.email} <br>
+  Send a message on github here: ${data.github}
+    `
+  }
+  return questions;
+}
+
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-
   var license = renderLicenseSection(data.license);
- 
-  var markdown;
+  var markdown = '';
   var names = Object.keys(data);
   var entry = Object.values(data);
-  var tableOfContents= renderTableOfContents(names,entry);
+  var tableOfContents = renderTableOfContents(names, entry);
+  var questions = renderQuestions(data);
+  console.log(markdown)
+  for (var x = 0; x < names.length; x++) {
+    if (names[x] === 'title') {
+      markdown += `# ${data.title}`
+    } if (names[x] === 'subTitle') {
+      markdown += '\n' + data.subTitle
+      
+    } if (names[x] === 'desc') {
+      markdown += '\n## Description\n' + data.desc
+      if (tableOfContents.length > 0) {
+        markdown += '\n' + tableOfContents
+      }
+    }
 
-  return `# ${data.title}
+    if (names[x] === 'install' && entry[x].length > 0) {
+      markdown += '\n## Installation\n' + data.install;
+    } if (names[x] === 'usage' && entry[x].length > 0) {
+      markdown +=
+      '\n## Usage \n' + data.usage;
+    } if (names[x] === 'contribute' && entry[x].length > 0) {
+      markdown +=
+      '\n## How to Contribute\n' + data.contribute;
+    } if (names[x] === 'tests' && entry[x].length > 0) {
+      markdown += 
+      '\n## Testing\n' + data.tests;
+    } if (names[x] === 'collab' && entry[x].length > 0) {
+      markdown += 
+      '\n## Project Collaborators\n' + data.collab;
+    } if (names[x] === 'license' && entry[x] != 'None') {
+      markdown += '\n' + license
+    } if ((names[x] === 'github' && entry[x].length > 0) || (names[x] === 'email' && entry[x].length > 0)) {
+      markdown += '\n' + questions
+      return markdown;
+    }
+  }
 
-  ${data.subTitle}
+  return markdown;
 
-  ## Description
+  // return `# ${data.title}
 
-  ${data.desc}
+  // ${data.subTitle}
 
-  ${tableOfContents}
+  // ## Description
 
-  ## Installation
+  // ${data.desc}
 
-  ${data.install}
+  // ${tableOfContents}
 
-  ## Usage
+  // ## Installation
 
-  ${data.usage}
+  // ${data.install}
 
-  ## How to Contribute
+  // ## Usage
 
-  ${data.contribute}
+  // ${ data.usage }
 
-  ## Testing
+  // ## How to Contribute
 
-  ${data.tests}
+  // ${ data.contribute }
 
-  ## Project Collaborators
+  // ## Testing
 
-  ${data.collab}
+  // ${ data.tests }
 
-  ${license}
+  // ## Project Collaborators
 
-  ## Questions
+  // ${ data.collab }
 
-  For additional questions send an email to ${data.email}.<br>Or send a message on github here: ${data.github}
- 
-`;
+  // ${ license }
+
+  // ## Questions
+
+  // For additional questions send an email to ${ data.email }.<br>Or send a message on github here: ${data.github}
+
+  //   `;
 }
 
-module.exports = generateMarkdown;
+    module.exports = generateMarkdown;
