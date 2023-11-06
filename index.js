@@ -11,6 +11,11 @@ const questions = [
     },
     {
         type: 'input',
+        name: 'subTitle',
+        message: 'Enter a sub title for the project'
+    },
+    {
+        type: 'input',
         name: 'desc',
         message: 'Provide a short description explaining the what, why and how of your project.'
     },
@@ -43,7 +48,7 @@ const questions = [
         type: 'list',
         name: 'license',
         message: 'What license would you like your project to use?',
-        choices: ['MIT', 'GNU GPLv3', 'Apache 2.0', 'ISC', '']
+        choices: ['MIT', 'GNU GPLv3', 'Apache 2.0', 'ISC', 'None']
     },
     {
         type: 'input',
@@ -66,6 +71,7 @@ function writeToFile(fileName, data) {
 function init() {
     inquirer.prompt(questions)
     .then(answers => {
+        console.log(answers)
         var text = generateMarkdown(answers);
         return writeToFile('./readme/README.md', text);
     })
