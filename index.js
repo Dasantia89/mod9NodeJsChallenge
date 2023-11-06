@@ -21,12 +21,12 @@ const questions = [
     },
     {
         type: 'editor',
-        name: 'Usage',
+        name: 'usage',
         message: 'Provide instructions and examples for use. Include screenshots as needed.\nTo add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:\n\t```md\n\t![alt text](assets/images/screenshot.png)\n\t```\n'
     },
     {
         type: 'input',
-        name: 'Contribute',
+        name: 'contribute',
         message: 'What are the guidelines for someone who wants to collaborate on this project?'
     },
     {
@@ -59,7 +59,6 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-
 }
 
 // TODO: Create a function to initialize app
@@ -68,6 +67,7 @@ function init() {
     .then(answers => {
         var text = generateMarkdown(answers);
     })
+    .catch(err => console.error(err))
 
 }
 
