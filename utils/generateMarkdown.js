@@ -40,7 +40,7 @@ function renderLicenseSection(license) {
     if (licenses[x] === license) {
       var link = renderLicenseLink(license);
       var text = '\nThis project is covered under the ' + license + ' license. ';
-      var section = `## License <br> ${text}  ${link}`
+      var section = `## License ${text}  ${link}`
       return section;
     }
   }

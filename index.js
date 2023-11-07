@@ -72,7 +72,7 @@ function init() {
     inquirer.prompt(questions)
     .then(answers => {
         var text = generateMarkdown(answers);
-        return writeToFile('./readme/README.md', text);
+        return writeToFile('NewReadme.md', text);
     })
     .catch(err => console.error(err))
 
