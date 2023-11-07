@@ -139,10 +139,10 @@ function generateMarkdown(data) {
       markdown += '\n## Installation\n' + data.install;
     } if (names[x] === 'usage' && entry[x].length > 0) {
       markdown +=
-      '\n## Usage \n' + data.usage;
+      '\n## Usage Information \n' + data.usage;
     } if (names[x] === 'contribute' && entry[x].length > 0) {
       markdown +=
-      '\n## How to Contribute\n' + data.contribute;
+      '\n## Contribution Guidelines\n' + data.contribute;
     } if (names[x] === 'tests' && entry[x].length > 0) {
       markdown += 
       '\n## Testing\n' + data.tests;
