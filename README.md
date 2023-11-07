@@ -8,7 +8,7 @@ Professional README Generator
 - [License](#license)
 - [Questions](#questions)
 ## Installation
-To install this project, clone the repository and run the command 'npm i inquirer@8' in a terminal. This will install the required inquirer app that will enable you to turn all of your project data into a professional readme file.
+To install this project, clone the repository and run the command 'npm i' in a terminal. This will install the required inquirer app that will enable you to turn all of your project data into a professional readme file.
 ## Usage Instructions
 https://watch.screencastify.com/v/vkcKhAGaNPiiSydXdQ1o
 ## License 
