@@ -1,4 +1,4 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
+// function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
   var licenses = [
@@ -15,7 +15,7 @@ function renderLicenseBadge(license) {
   return '';
 }
 
-// TODO: Create a function that returns the license link
+// Function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
   var licenses = [
@@ -32,7 +32,7 @@ function renderLicenseLink(license) {
   return '';
 }
 
-// TODO: Create a function that returns the license section of README
+// Function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   var licenses = ['Apache 2.0', 'MIT', 'ISC', 'GNU GPLv3'];
@@ -48,6 +48,7 @@ function renderLicenseSection(license) {
 
 }
 
+// Function that generates the Table of contents into markup. If user didnt enter anything for an input, skip it
 function renderTableOfContents(name, entry) {
   var table = `
   ## Table of Contents<br>
@@ -92,6 +93,7 @@ function renderTableOfContents(name, entry) {
   return table;
 }
 
+// Generate markup for the Questions section of the readme. If any information was left out, don't add it to the readme
 function renderQuestions (data){
   var questions = `
   ## Questions
@@ -114,7 +116,7 @@ function renderQuestions (data){
   return questions;
 }
 
-// TODO: Create a function to generate markdown for README
+// Create a function to generate markdown for README. If any inputs have no data, omit them from the readme
 function generateMarkdown(data) {
   var license = renderLicenseSection(data.license);
   var markdown = '';
@@ -159,4 +161,5 @@ function generateMarkdown(data) {
 
   return markdown;
 }
+// export the generateMarkdown function so it can be written to file
 module.exports = generateMarkdown;
