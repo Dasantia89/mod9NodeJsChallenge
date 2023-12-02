@@ -5,6 +5,7 @@ Professional README Generator
 
   ## Table of Contents<br>
   - [Installation](#installation)
+- [Usage Information](#usage-information)
 - [License](#license)
 - [Questions](#questions)
 ## Installation
