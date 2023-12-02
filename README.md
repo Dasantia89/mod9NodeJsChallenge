@@ -10,7 +10,7 @@ Professional README Generator
 - [Questions](#questions)
 ## Installation
 To install this project, clone the repository and run the command 'npm i' in a terminal. This will install the required inquirer app that will enable you to turn all of your project data into a professional readme file.
-## Usage Instructions
+## Usage Information 
 https://watch.screencastify.com/v/vkcKhAGaNPiiSydXdQ1o
 ## License 
 This project is covered under the MIT license.   https://opensource.org/licenses/MIT
